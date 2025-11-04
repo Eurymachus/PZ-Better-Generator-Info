@@ -125,7 +125,7 @@ local function _BGI_withinVerticalLimits(genZ, targetZ)
 end
 
 -- Global master switch (ModOptions): returns true when overlay is enabled
-local function _BGI_isOverlayEnabled()
+local function _isOverlayEnabled()
     local opts = rawget(_G, "BGI") and BGI.Options
     if opts and opts.EnablePowerRangeOverlay ~= nil then
         return opts.EnablePowerRangeOverlay == true
@@ -136,7 +136,7 @@ end
 -- Per Gen Color (respects ON/OFF)
 -- Inputs : isOn (boolean or nil)
 -- Output : {r,g,b,a}
-local function _BGI_PerGenCol(isOn)
+local function _perGenColor(isOn)
     local alpha = BGI_PowerRange.PerGenAlpha or 0.08
     local opts  = rawget(_G, "BGI") and BGI.Options
     -- ON: use user colour if available; else core "good"
@@ -210,7 +210,7 @@ end
 -- Power Stencil (ΔZ = 0): precompute once per (R, ProbePad)
 -- Reuses engine truth to build a reusable mask & edge offsets.
 -----------------------------------------------------------------------
-local BGI_Stencil = {
+BGI_Stencil = {
     keyR = nil, keyPad = nil,
     poweredOffsets = nil, -- array of {dx,dy}
     edgeOffsets    = nil, -- array of {dx,dy} (outer circumference)
@@ -255,7 +255,7 @@ local function _BGI_buildStencil(R, pad)
     BGI_Stencil.edgeOffsets    = edgeOffsets
 end
 
-local function _BGI_ensureStencil(R, pad)
+local function _ensureStencil(R, pad)
     if BGI_Stencil.keyR ~= R or BGI_Stencil.keyPad ~= (pad or 0)
        or not BGI_Stencil.poweredOffsets or not BGI_Stencil.edgeOffsets then
         _BGI_buildStencil(R, pad)
@@ -399,7 +399,7 @@ function BGI_PowerRange:_rebuildPerGenEdges()
     local pad = (self.ProbePad or 0)
 
     -- Ensure stencil (ΔZ=0)
-    _BGI_ensureStencil(R, pad)
+    _ensureStencil(R, pad)
 
     -- Build edges at generator coords once
     local builtEdges = {}
@@ -447,7 +447,7 @@ function BGI_PowerRange:_rebuildUnionEdges(onlyZ)
     local pad = (self.ProbePad or 0)
     local reachBox = R + pad
 
-    _BGI_ensureStencil(R, pad)
+    _ensureStencil(R, pad)
 
     local gens = BGI_GenRegistry.getAll()
     if not gens or #gens == 0 then
@@ -612,7 +612,7 @@ function BGI_PowerRange:_localizedUnionUpdateForGen(gen)
     local pad = (self.ProbePad or 0)
     local reachBox = R + pad
 
-    _BGI_ensureStencil(R, pad)
+    _ensureStencil(R, pad)
 
     self.UnionPoweredByZ = self.UnionPoweredByZ or {}
     self.UnionEdgesByZ   = self.UnionEdgesByZ   or {}
@@ -666,7 +666,7 @@ end
 -- Draw one Z-slice of the edges with the provided colour (table .r .g .b .a)
 -- Now edges are stored as immutable {x,y} coords (not IsoGridSquare objects),
 -- so drawing is chunk/load agnostic (no hitches, no gaps).
-local function _BGI_drawEdgeList(edgeList, z, color)
+local function _drawEdgeList(edgeList, z, color)
     if not edgeList or #edgeList == 0 then return end
     local r, g, b, a = color.r, color.g, color.b, color.a
     for i = 1, #edgeList do
@@ -680,7 +680,7 @@ end
 
 -- Draw overlays for the player's current Z
 function BGI_PowerRange:_drawCurrentZ()
-    if not _BGI_isOverlayEnabled() then return end
+    if not _isOverlayEnabled() then return end
     local p = _BGI_getPlayer(); if not p or not p.getZ then return end
     local z = p:getZ()
 
@@ -692,7 +692,7 @@ function BGI_PowerRange:_drawCurrentZ()
     -- 1) Union overlay first (optional, powder blue)
     if hasUnion then
         local col = _BGI_UnionGenCol()
-        _BGI_drawEdgeList(self.UnionEdgesByZ[z], z, col)
+        _drawEdgeList(self.UnionEdgesByZ[z], z, col)
     end
 
     -- 2) Per-generator ring on top (colour by “does this gen power THIS Z?”)
@@ -711,8 +711,8 @@ function BGI_PowerRange:_drawCurrentZ()
         end
 
         -- If the gen is ON but doesn’t power this Z, treat as OFF for colour choice.
-        local color = _BGI_PerGenCol(isOn and powersThisZ)
-        _BGI_drawEdgeList(self.PerGenEdgesByZ[z], z, color)
+        local color = _perGenColor(isOn and powersThisZ)
+        _drawEdgeList(self.PerGenEdgesByZ[z], z, color)
     end
 end
 
@@ -790,7 +790,7 @@ end
 function BGI_PowerRange.Update()
     if not BGI_PowerRange.Enabled then return end
     -- Master switch via ModOptions
-    if not _BGI_isOverlayEnabled() then
+    if not _isOverlayEnabled() then
         return  -- no rebuilds, no drawing
     end
 
@@ -888,7 +888,7 @@ do
                 local btnW, btnH = math.max(26, txtW + 8), 18
                 self.bgiUnionBtn = ISButton:new(0, 0, btnW, btnH, label, self,
                     function()
-                        if not _BGI_isOverlayEnabled() then return end
+                        if not _isOverlayEnabled() then return end
                         local turningOn = not (BGI_PowerRange.ShowUnion == true)
                         BGI_PowerRange.ShowUnion = turningOn
 
@@ -925,7 +925,7 @@ do
                 local btnW2, btnH2 = math.max(28, txtW2 + 8), 18
                 self.bgiThisBtn = ISButton:new(0, 0, btnW2, btnH2, labelThis, self,
                     function()
-                        if not _BGI_isOverlayEnabled() then return end
+                        if not _isOverlayEnabled() then return end
                         local turningOn = not (BGI_PowerRange.ShowPerGen == true)
                         BGI_PowerRange.ShowPerGen = turningOn
                         local p = _BGI_getPlayer()
@@ -950,7 +950,7 @@ do
         -- Keep the checkbox anchored to the bottom; drive Update()
         local _legacy_prerender = ISGeneratorInfoWindow.prerender
         function ISGeneratorInfoWindow:prerender()
-            local overlayEnabled = _BGI_isOverlayEnabled()
+            local overlayEnabled = _isOverlayEnabled()
             if self.bgiUnionBtn then self.bgiUnionBtn:setVisible(overlayEnabled) end
             if self.bgiThisBtn  then self.bgiThisBtn:setVisible(overlayEnabled)  end
             if not overlayEnabled then
@@ -1133,3 +1133,11 @@ do
         ISActivateGenerator._BGI_wrapComplete = true
     end
 end
+
+-- ==========================================================
+-- [BGI] Expose internal helpers for optional external modules
+-- ==========================================================
+BGI_PowerRange.drawEdgeList     = _drawEdgeList
+BGI_PowerRange.ensureStencil    = _ensureStencil
+BGI_PowerRange.getPerGenColor   = _perGenColor
+BGI_PowerRange.isOverlayEnabled = _isOverlayEnabled
