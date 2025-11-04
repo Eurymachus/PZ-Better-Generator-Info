@@ -1,0 +1,7 @@
+Tooltip_CS = {
+  Tooltip_BGI_Day     = "den",
+  Tooltip_BGI_Days    = "dny",
+  Tooltip_BGI_Hour    = "hodina",
+  Tooltip_BGI_Hours   = "hodiny",
+  Tooltip_BGI_Minutes = "z�pis",
+}

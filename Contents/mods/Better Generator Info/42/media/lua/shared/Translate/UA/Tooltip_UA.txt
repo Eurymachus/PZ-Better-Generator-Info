@@ -1,0 +1,7 @@
+Tooltip_UA = {
+  Tooltip_BGI_Day     = "день",
+  Tooltip_BGI_Days    = "дні",
+  Tooltip_BGI_Hour    = "година",
+  Tooltip_BGI_Hours   = "годинник",
+  Tooltip_BGI_Minutes = "хвилини",
+}

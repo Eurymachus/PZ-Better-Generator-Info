@@ -1,0 +1,7 @@
+Tooltip_TH = {
+  Tooltip_BGI_Day     = "วัน",
+  Tooltip_BGI_Days    = "วัน",
+  Tooltip_BGI_Hour    = "ชั่วโมง",
+  Tooltip_BGI_Hours   = "ชั่วโมง",
+  Tooltip_BGI_Minutes = "นาที",
+}

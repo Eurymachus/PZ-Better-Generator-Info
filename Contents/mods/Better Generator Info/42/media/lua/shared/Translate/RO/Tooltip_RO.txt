@@ -1,0 +1,7 @@
+Tooltip_RO = {
+  Tooltip_BGI_Day     = "zi",
+  Tooltip_BGI_Days    = "zile",
+  Tooltip_BGI_Hour    = "oră",
+  Tooltip_BGI_Hours   = "ore",
+  Tooltip_BGI_Minutes = "minute",
+}

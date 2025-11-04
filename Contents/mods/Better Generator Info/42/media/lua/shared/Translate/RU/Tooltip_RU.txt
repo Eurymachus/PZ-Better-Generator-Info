@@ -1,0 +1,7 @@
+Tooltip_RU = {
+  Tooltip_BGI_Day     = "день",
+  Tooltip_BGI_Days    = "дни",
+  Tooltip_BGI_Hour    = "час",
+  Tooltip_BGI_Hours   = "часы",
+  Tooltip_BGI_Minutes = "минуты",
+}

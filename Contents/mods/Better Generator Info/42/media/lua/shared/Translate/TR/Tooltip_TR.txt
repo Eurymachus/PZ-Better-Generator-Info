@@ -1,0 +1,7 @@
+Tooltip_TR = {
+  Tooltip_BGI_Day     = "gün",
+  Tooltip_BGI_Days    = "günler",
+  Tooltip_BGI_Hour    = "saat",
+  Tooltip_BGI_Hours   = "saat",
+  Tooltip_BGI_Minutes = "dakikalar",
+}

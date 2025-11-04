@@ -1,0 +1,7 @@
+Tooltip_JP = {
+  Tooltip_BGI_Day     = "日",
+  Tooltip_BGI_Days    = "日",
+  Tooltip_BGI_Hour    = "時間",
+  Tooltip_BGI_Hours   = "時間",
+  Tooltip_BGI_Minutes = "分",
+}

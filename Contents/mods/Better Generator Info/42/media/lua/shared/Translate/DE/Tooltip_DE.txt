@@ -1,0 +1,7 @@
+Tooltip_DE = {
+  Tooltip_BGI_Day     = "Tag",
+  Tooltip_BGI_Days    = "Tage",
+  Tooltip_BGI_Hour    = "Stunde",
+  Tooltip_BGI_Hours   = "Std.",
+  Tooltip_BGI_Minutes = "Minuten",
+}

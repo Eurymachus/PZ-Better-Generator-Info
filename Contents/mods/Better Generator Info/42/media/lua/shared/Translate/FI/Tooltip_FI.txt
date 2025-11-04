@@ -1,0 +1,7 @@
+Tooltip_FI = {
+  Tooltip_BGI_Day     = "päivä",
+  Tooltip_BGI_Days    = "päivä",
+  Tooltip_BGI_Hour    = "tunnin",
+  Tooltip_BGI_Hours   = "tuntia",
+  Tooltip_BGI_Minutes = "minuutti",
+}

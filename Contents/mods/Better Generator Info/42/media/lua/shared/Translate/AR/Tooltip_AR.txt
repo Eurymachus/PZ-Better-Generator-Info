@@ -1,0 +1,7 @@
+Tooltip_AR = {
+  Tooltip_BGI_Day     = "d�a",
+  Tooltip_BGI_Days    = "d�as",
+  Tooltip_BGI_Hour    = "hora",
+  Tooltip_BGI_Hours   = "horas",
+  Tooltip_BGI_Minutes = "minutos",
+}

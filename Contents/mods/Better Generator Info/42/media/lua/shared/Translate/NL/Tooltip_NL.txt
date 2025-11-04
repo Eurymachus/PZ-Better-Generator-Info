@@ -1,0 +1,7 @@
+Tooltip_NL = {
+  Tooltip_BGI_Day     = "dag",
+  Tooltip_BGI_Days    = "dagen",
+  Tooltip_BGI_Hour    = "uur",
+  Tooltip_BGI_Hours   = "uren",
+  Tooltip_BGI_Minutes = "notulen",
+}

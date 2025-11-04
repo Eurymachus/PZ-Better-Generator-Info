@@ -1,0 +1,7 @@
+Tooltip_ID = {
+  Tooltip_BGI_Day     = "hari",
+  Tooltip_BGI_Days    = "hari -hari",
+  Tooltip_BGI_Hour    = "jam",
+  Tooltip_BGI_Hours   = "jam",
+  Tooltip_BGI_Minutes = "menit",
+}

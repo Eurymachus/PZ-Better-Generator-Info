@@ -1,0 +1,7 @@
+Tooltip_HU = {
+  Tooltip_BGI_Day     = "nap",
+  Tooltip_BGI_Days    = "napok",
+  Tooltip_BGI_Hour    = "óra",
+  Tooltip_BGI_Hours   = "órák",
+  Tooltip_BGI_Minutes = "jegyzőkönyv",
+}

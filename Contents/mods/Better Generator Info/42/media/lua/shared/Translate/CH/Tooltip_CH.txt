@@ -1,0 +1,7 @@
+Tooltip_CH = {
+  Tooltip_BGI_Day     = "天",
+  Tooltip_BGI_Days    = "天",
+  Tooltip_BGI_Hour    = "小時",
+  Tooltip_BGI_Hours   = "小時",
+  Tooltip_BGI_Minutes = "分鐘",
+}
