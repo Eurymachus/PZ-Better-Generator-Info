@@ -3,14 +3,11 @@
 --==========================================================
 -- Draws a translucent generator power range ring around the player
 -- while they are carrying a generator (in primary or secondary hand).
--- Reuses all exposed helpers from BGI_PowerRange.lua:
---   • drawEdgeList()
---   • ensureStencil()
---   • getPerGenColor()
---   • isOverlayEnabled()
---
--- This module runs independently of the Generator Info Window.
 --==========================================================
+
+local function strContains(haystack, needle)
+    return string.find(haystack, needle, 1, true) ~= nil
+end
 
 if not BGI_PowerRange then
     DebugLog.log(DebugType.General, "[BGI] PowerRange module missing; preview overlay disabled.")
@@ -31,8 +28,11 @@ local function isHoldingGenerator(player)
     if not player then return false end
     local prim = player:getPrimaryHandItem()
     local sec  = player:getSecondaryHandItem()
-    if prim and prim.getType and prim:getType() == "Generator" then return true end
-    if sec  and sec.getType  and sec:getType()  == "Generator" then return true end
+    if prim and prim.getType and sec and sec.getType then
+        primType = strContains(prim:getType(), "Generator")
+        secType = strContains(sec:getType(), "Generator")
+        return primType and secType
+    end
     return false
 end
 
@@ -61,27 +61,30 @@ end
 -- ----------------------------------------------------------
 -- Event: draw live preview ring for held generators
 -- ----------------------------------------------------------
-Events.OnPlayerUpdate.Add(function(player)
-    -- respect overlay master toggle
-    if not isOverlayEnabled() then return end
-    -- if main overlay active (window open), let it handle drawing
-    if BGI_PowerRange.Enabled == true then return end
-    if not (player and player:isLocalPlayer()) then return end
-    if not isHoldingGenerator(player) then return end
+if not BGI_PowerRange._heldPreview then
+    Events.OnPlayerUpdate.Add(function(player)
+        -- respect overlay master toggle
+        if not isOverlayEnabled() then return end
+        -- if main overlay active (window open), let it handle drawing
+        if BGI_PowerRange.Enabled == true then return end
+        if not player then return end
+        if not isHoldingGenerator(player) then return end
 
-    local sq = player:getSquare()
-    if not sq then return end
-    local px, py, pz = sq:getX(), sq:getY(), sq:getZ()
-    local R = BGI_PowerRange:_getEffectiveTileRange()
+        local sq = player:getSquare()
+        if not sq then return end
+        local px, py, pz = sq:getX(), sq:getY(), sq:getZ()
+        local R = BGI_PowerRange:_getEffectiveTileRange()
 
-    local edges = buildEdges(px, py, pz, R)
-    if not edges or #edges == 0 then return end
+        local edges = buildEdges(px, py, pz, R)
+        if not edges or #edges == 0 then return end
 
-    -- Slightly translucent “planning” color
-    local c = getPerGenColor(true)
-    local col = { r = c.r, g = c.g, b = c.b, a = math.max(0.02, (c.a or 0.08) * 0.75) }
+        -- Slightly translucent “planning” color
+        local c = getPerGenColor(true)
+        local col = { r = c.r, g = c.g, b = c.b, a = math.max(0.02, (c.a or 0.08) * 0.75) }
 
-    drawEdgeList(edges, pz, col)
-end)
-
-DebugLog.log(DebugType.General, "[BGI] Carried generator preview module initialized.")
+        drawEdgeList(edges, pz, col)
+        
+    end)
+    BGI_PowerRange._heldPreview = true
+    DebugLog.log(DebugType.General, "[BGI] Carried generator preview module initialized.")
+end
