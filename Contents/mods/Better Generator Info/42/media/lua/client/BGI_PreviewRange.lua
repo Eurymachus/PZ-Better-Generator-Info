@@ -28,9 +28,9 @@ local function isHoldingGenerator(player)
     if not player then return false end
     local prim = player:getPrimaryHandItem()
     local sec  = player:getSecondaryHandItem()
-    if prim and prim.getType and sec and sec.getType then
-        primType = strContains(prim:getType(), "Generator")
-        secType = strContains(sec:getType(), "Generator")
+    if prim and prim.hasTag and sec and sec.hasTag then
+        primType = prim:hasTag("Generator")
+        secType = sec:hasTag("Generator")
         return primType and secType
     end
     return false
