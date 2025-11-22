@@ -1,4 +1,4 @@
-local UI_KO = {
+UI_KO = {
 	UI_BGI_Options_Title = "Better Generator Info",
 	UI_BGI_Options_ReqLevel = "필요한 전기 레벨",
 	UI_BGI_Options_ReqLevel_Tooltip = "발전기 작동 시간을 보려면 필요한 최소 전기 기술 레벨입니다.",

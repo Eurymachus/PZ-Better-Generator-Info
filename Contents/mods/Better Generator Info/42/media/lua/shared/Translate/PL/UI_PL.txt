@@ -1,4 +1,4 @@
-local UI_PL = {
+UI_PL = {
 	UI_BGI_Options_Title = "Better Generator Info",
 	UI_BGI_Options_ReqLevel = "Wymagany poziom Elektryki",
 	UI_BGI_Options_ReqLevel_Tooltip = "Minimalny poziom umiejętności Elektryka wymagany do wyświetlania czasu pracy generatora.",

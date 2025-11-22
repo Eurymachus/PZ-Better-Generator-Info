@@ -1,4 +1,4 @@
-local UI_TR = {
+UI_TR = {
 	UI_BGI_Options_Title = "Better Generator Info",
 	UI_BGI_Options_ReqLevel = "Gerekli Elektrik Seviyesi",
 	UI_BGI_Options_ReqLevel_Tooltip = "Jeneratör çalışma süresini görmek için gereken minimum Elektrik beceri seviyesi.",

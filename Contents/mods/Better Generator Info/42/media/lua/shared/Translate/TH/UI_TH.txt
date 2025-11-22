@@ -1,4 +1,4 @@
-local UI_TH = {
+UI_TH = {
 	UI_BGI_Options_Title = "Better Generator Info",
 	UI_BGI_Options_ReqLevel = "ระดับทักษะไฟฟ้าที่ต้องการ",
 	UI_BGI_Options_ReqLevel_Tooltip = "ระดับทักษะไฟฟ้าขั้นต่ำที่ต้องใช้เพื่อดูเวลาใช้งานของเครื่องกำเนิดไฟฟ้า.",

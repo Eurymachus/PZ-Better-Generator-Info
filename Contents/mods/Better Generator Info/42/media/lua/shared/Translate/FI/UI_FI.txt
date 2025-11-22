@@ -1,4 +1,4 @@
-local UI_FI = {
+UI_FI = {
 	UI_BGI_Options_Title = "Better Generator Info",
 	UI_BGI_Options_ReqLevel = "Vaadittu sähkötaso",
 	UI_BGI_Options_ReqLevel_Tooltip = "Vähimmäistaso Sähköissä, jotta generaattorin käyntiaika näkyy.",

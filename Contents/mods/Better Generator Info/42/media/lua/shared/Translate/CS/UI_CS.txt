@@ -1,4 +1,4 @@
-local UI_CS = {
+UI_CS = {
 	UI_BGI_Options_Title = "Better Generator Info",
 	UI_BGI_Options_ReqLevel = "Požadovaná úroveň Elektřiny",
 	UI_BGI_Options_ReqLevel_Tooltip = "Minimální úroveň dovednosti Elektřina potřebná k zobrazení doby běhu generátoru.",

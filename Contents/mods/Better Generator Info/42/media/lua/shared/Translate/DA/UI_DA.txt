@@ -1,4 +1,4 @@
-local UI_DA = {
+UI_DA = {
 	UI_BGI_Options_Title = "Better Generator Info",
 	UI_BGI_Options_ReqLevel = "Krævet niveau i Elektricitet",
 	UI_BGI_Options_ReqLevel_Tooltip = "Minimumsniveau i Elektricitet for at se generatorens driftstid.",

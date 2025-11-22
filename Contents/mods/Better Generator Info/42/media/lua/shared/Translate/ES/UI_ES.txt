@@ -1,4 +1,4 @@
-local UI_ES = {
+UI_ES = {
 	UI_BGI_Options_Title = "Better Generator Info",
 	UI_BGI_Options_ReqLevel = "Nivel de Electricidad requerido",
 	UI_BGI_Options_ReqLevel_Tooltip = "Nivel mínimo de habilidad en Electricidad para ver el tiempo de funcionamiento del generador.",

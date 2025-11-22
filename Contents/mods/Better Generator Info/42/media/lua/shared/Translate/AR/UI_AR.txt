@@ -1,4 +1,4 @@
-local UI_AR = {
+UI_AR = {
 	UI_BGI_Options_Title = "Better Generator Info",
 	UI_BGI_Options_ReqLevel = "مستوى الكهرباء المطلوب",
 	UI_BGI_Options_ReqLevel_Tooltip = "الحد الأدنى من مهارة الكهرباء اللازمة لعرض مدة عمل المولّد.",

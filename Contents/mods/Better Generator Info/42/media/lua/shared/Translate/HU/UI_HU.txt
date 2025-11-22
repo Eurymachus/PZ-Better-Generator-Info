@@ -1,4 +1,4 @@
-local UI_HU = {
+UI_HU = {
 	UI_BGI_Options_Title = "Better Generator Info",
 	UI_BGI_Options_ReqLevel = "Szükséges Elektromosság szint",
 	UI_BGI_Options_ReqLevel_Tooltip = "A generátor működési idejének megjelenítéséhez szükséges minimum Elektromosság szint.",

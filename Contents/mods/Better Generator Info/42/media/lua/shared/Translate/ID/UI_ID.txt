@@ -1,4 +1,4 @@
-local UI_ID = {
+UI_ID = {
 	UI_BGI_Options_Title = "Better Generator Info",
 	UI_BGI_Options_ReqLevel = "Level Listrik yang dibutuhkan",
 	UI_BGI_Options_ReqLevel_Tooltip = "Level keahlian Listrik minimum untuk melihat waktu operasi generator.",

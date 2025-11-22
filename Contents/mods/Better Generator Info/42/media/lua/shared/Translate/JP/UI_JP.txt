@@ -1,4 +1,4 @@
-local UI_JP = {
+UI_JP = {
 	UI_BGI_Options_Title = "Better Generator Info",
 	UI_BGI_Options_ReqLevel = "必要な電気スキル",
 	UI_BGI_Options_ReqLevel_Tooltip = "発電機の稼働時間を表示するために必要な電気スキルの最小レベル。",
