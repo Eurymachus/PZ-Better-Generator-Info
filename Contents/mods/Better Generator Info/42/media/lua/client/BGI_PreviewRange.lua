@@ -24,16 +24,24 @@ local _cache = { edges = {}, px = nil, py = nil, pz = nil, R = nil }
 -- ----------------------------------------------------------
 -- Helper: check if the player is holding a generator
 -- ----------------------------------------------------------
+-- Returns true if the player is holding a generator in BOTH hands
+-- Compatible with B42.12 (string tags) and B42.13 (ItemTag registry)
 local function isHoldingGenerator(player)
     if not player then return false end
+
     local prim = player:getPrimaryHandItem()
     local sec  = player:getSecondaryHandItem()
-    if prim and prim.hasTag and sec and sec.hasTag then
-        primType = prim:hasTag("Generator")
-        secType = sec:hasTag("Generator")
-        return primType and secType
+    if not (prim and sec) then return false end
+    if not (prim.hasTag and sec.hasTag) then return false end
+
+    if ItemTag and ItemTag.GENERATOR then
+        return prim:hasTag(ItemTag.GENERATOR)
+           and sec:hasTag(ItemTag.GENERATOR)
     end
-    return false
+
+    -- B42.12 fallback
+    return prim:hasTag("Generator")
+       and sec:hasTag("Generator")
 end
 
 -- ----------------------------------------------------------
