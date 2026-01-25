@@ -46,5 +46,5 @@ description=[*]To work on [b]Dedicated Servers[/b] (B42.13+) set [i]DoLuaChecksu
 description=[/list]
 description=
 description=[hr][/hr]
-tags=Build 42;Interface;QoL
+tags=Build 42;Interface;Multiplayer;QoL
 visibility=public
